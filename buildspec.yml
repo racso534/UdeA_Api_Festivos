@@ -36,6 +36,8 @@ phases:
       - echo "RepoPath $REPO_URI"
       - echo "ImageTag $IMAGE_TAG"
       - echo "ImageUri $REPO_URI:$IMAGE_TAG"
+      - ls -la
+      - find . -name "Dockerfile"
       - docker build -t $REPO_URI:$IMAGE_TAG -f Dockerfile .
   post_build:
     commands:
