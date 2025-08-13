@@ -19,19 +19,10 @@ phases:
       - echo "Building project..."
       - |
         if [ -f pom.xml ] || [ -f build.gradle ]; then
-          echo "Detected backend (Java). Building..."
-          cd apiFestivos || exit 1
+          echo "Detected backend (Java). Building..."          
           mvn -B -DskipTests package || true
           cd -
-        fi
-      - |
-        if [ -f ./frontend/package.json ]; then
-          echo "Detected frontend. Building..."
-          cd frontend || exit 1
-          npm install --no-audit --no-fund
-          npm run build || true
-          cd -
-        fi
+        fi      
       - echo "Building docker image..."
       - echo "RepoPath $REPO_URI"
       - echo "ImageTag $IMAGE_TAG"
