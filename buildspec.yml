@@ -5,10 +5,11 @@ env:
     AWS_DEFAULT_REGION: "us-east-1"
     # Estos env vars se inyectarán desde el CodeBuild project en pipeline.yml
     # ACCOUNT_ID and REPO_URI will be provided by CodeBuild environment variables or pipeline
-phases:
-  runtime-versions:
-    java: corretto17
-    docker: 20
+phases:  
+  install:
+    runtime-versions:
+      java: corretto17
+      docker: 20
       
   pre_build:
     commands:
