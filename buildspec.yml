@@ -30,8 +30,7 @@ phases:
       - |
         if [ -f pom.xml ] || [ -f build.gradle ]; then
           echo "Detected backend (Java). Building..."          
-          mvn -B -DskipTests package || true
-          cd -
+          mvn -B -DskipTests package
         fi      
       - echo "Building docker image..."
       - echo "RepoPath $REPO_URI"
