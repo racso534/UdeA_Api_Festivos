@@ -8,8 +8,13 @@ env:
 phases:  
   install:
     runtime-versions:
-      java: corretto17
       docker: 20
+      commands:
+        - echo "Instalando Amazon Corretto 17..."
+        - yum install -y java-17-amazon-corretto-devel
+        - export JAVA_HOME=/usr/lib/jvm/java-17-amazon-corretto
+        - export PATH=$JAVA_HOME/bin:$PATH
+        - java -version
       
   pre_build:
     commands:
