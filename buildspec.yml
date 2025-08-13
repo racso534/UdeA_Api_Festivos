@@ -33,6 +33,9 @@ phases:
           cd -
         fi
       - echo "Building docker image..."
+      - echo "RepoPath $REPO_URI"
+      - echo "ImageTag $IMAGE_TAG"
+      - echo "ImageUri $REPO_URI:$IMAGE_TAG"
       - docker build . -t $REPO_URI:$IMAGE_TAG
   post_build:
     commands:
