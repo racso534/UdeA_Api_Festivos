@@ -3,46 +3,48 @@ FROM maven:3.8.5-openjdk-17 AS build
 WORKDIR /app
 
 # Copiar archivos de configuración de Maven
-COPY pom.xml .
-COPY dominio/pom.xml dominio/
-COPY core/pom.xml core/
-COPY aplicacion/pom.xml aplicacion/
-COPY infraestructura/pom.xml infraestructura/
-COPY presentacion/pom.xml presentacion/
+# COPY pom.xml .
+# COPY dominio/pom.xml dominio/
+# COPY core/pom.xml core/
+# COPY aplicacion/pom.xml aplicacion/
+# COPY infraestructura/pom.xml infraestructura/
+# COPY presentacion/pom.xml presentacion/
 
 # Descargar dependencias
-RUN mvn dependency:go-offline -B
+# RUN mvn dependency:go-offline -B
 
 # Copiar código fuente
-COPY dominio/src dominio/src
-COPY core/src core/src
-COPY aplicacion/src aplicacion/src
-COPY infraestructura/src infraestructura/src
-COPY presentacion/src presentacion/src
+# COPY dominio/src dominio/src
+# COPY core/src core/src
+# COPY aplicacion/src aplicacion/src
+# COPY infraestructura/src infraestructura/src
+# COPY presentacion/src presentacion/src
 
 # Compilar la aplicación
 RUN mvn clean package -DskipTests
 
 # Etapa de ejecución
-FROM eclipse-temurin:17-jre-alpine
+# FROM eclipse-temurin:17-jre-alpine
+FROM openjdk:17-jdk-alpine
 WORKDIR /app
 
 # Instalar curl para health checks
-RUN apk add --no-cache curl
+# RUN apk add --no-cache curl
 
 # Crear usuario no privilegiado
-RUN addgroup -S appuser && adduser -S appuser -G appuser
+# RUN addgroup -S appuser && adduser -S appuser -G appuser
 
 # Copiar el JAR desde la etapa de construcción
 COPY --from=build /app/presentacion/target/*.jar app.jar
 
 # Cambiar propietario
-RUN chown appuser:appuser app.jar
+# RUN chown appuser:appuser app.jar
 
-USER appuser
+# USER appuser
 
 # Exponer puerto
 EXPOSE 8080
 
 # Comando de inicio
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# ENTRYPOINT ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "app.jar"]
