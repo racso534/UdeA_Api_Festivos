@@ -4,6 +4,7 @@ env:
   variables:
     AWS_DEFAULT_REGION: "us-east-1"
     REPO_NAME: "apifestivos-backend"
+    CONTAINER_NAME: "ProyectoFestivos-container"
 phases:  
   install:
     runtime-versions:
@@ -37,7 +38,7 @@ phases:
       - echo "ImageTag $IMAGE_TAG"
       - echo "ImageUri $REPO_URI:$IMAGE_TAG"
       - ls -la
-      - find . -name "Dockerfile"
+      
       - docker build -t $REPO_URI:$IMAGE_TAG .
   post_build:
     commands:
