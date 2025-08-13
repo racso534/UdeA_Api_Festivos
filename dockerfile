@@ -4,22 +4,22 @@ FROM 712598386003.dkr.ecr.us-east-1.amazonaws.com/3.9-eclipse-temurin-17:latest 
 WORKDIR /app
 
 # Copiar archivos de configuración de Maven
-# COPY pom.xml .
-# COPY dominio/pom.xml dominio/
-# COPY core/pom.xml core/
-# COPY aplicacion/pom.xml aplicacion/
-# COPY infraestructura/pom.xml infraestructura/
-# COPY presentacion/pom.xml presentacion/
+COPY pom.xml .
+COPY dominio/pom.xml dominio/
+COPY core/pom.xml core/
+COPY aplicacion/pom.xml aplicacion/
+COPY infraestructura/pom.xml infraestructura/
+COPY presentacion/pom.xml presentacion/
 
 # Descargar dependencias
-# RUN mvn dependency:go-offline -B
+RUN mvn dependency:go-offline -B
 
 # Copiar código fuente
-# COPY dominio/src dominio/src
-# COPY core/src core/src
-# COPY aplicacion/src aplicacion/src
-# COPY infraestructura/src infraestructura/src
-# COPY presentacion/src presentacion/src
+COPY dominio/src dominio/src
+COPY core/src core/src
+COPY aplicacion/src aplicacion/src
+COPY infraestructura/src infraestructura/src
+COPY presentacion/src presentacion/src
 
 # Compilar la aplicación
 RUN mvn clean package -DskipTests
