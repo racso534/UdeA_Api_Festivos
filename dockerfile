@@ -1,5 +1,6 @@
 ﻿# Etapa de construcción 
-FROM maven:3.8.5-openjdk-17 AS build
+#FROM maven:3.8.5-openjdk-17 AS build
+FROM 712598386003.dkr.ecr.us-east-1.amazonaws.com/3.9-eclipse-temurin-17:latest as build
 WORKDIR /app
 
 # Copiar archivos de configuración de Maven
@@ -25,7 +26,8 @@ RUN mvn clean package -DskipTests
 
 # Etapa de ejecución
 # FROM eclipse-temurin:17-jre-alpine
-FROM openjdk:17-jdk-alpine
+# FROM openjdk:17-jdk-alpine
+FROM 712598386003.dkr.ecr.us-east-1.amazonaws.com/3.9-eclipse-temurin-17
 WORKDIR /app
 
 # Instalar curl para health checks
