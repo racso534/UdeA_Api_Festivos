@@ -33,7 +33,7 @@ phases:
           cd -
         fi
       - echo "Building docker image..."
-      - docker build -t $REPO_URI:$IMAGE_TAG $DOCKER_CONTEXT
+      - docker build . -t $REPO_URI:$IMAGE_TAG
   post_build:
     commands:
       - echo "Pushing image to ECR..."
