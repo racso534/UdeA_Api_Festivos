@@ -17,6 +17,7 @@ phases:
       
   pre_build:
     commands:
+      - ls -altr
       - echo "Logging in to Amazon ECR..."
       - ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
       - REPO_URI="$ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$REPO_NAME"
