@@ -37,6 +37,7 @@ phases:
       - echo "RepoPath $REPO_URI"
       - echo "ImageTag $IMAGE_TAG"
       - echo "ImageUri $REPO_URI:$IMAGE_TAG"
+      - echo "ContainerName $CONTAINER_NAME"
       - ls -la
       
       - docker build -t $REPO_URI:$IMAGE_TAG .
