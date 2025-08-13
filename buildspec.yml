@@ -18,7 +18,7 @@ phases:
     commands:
       - echo "Building project..."
       - |
-        if [ -f ./apiFestivos/pom.xml ] || [ -f ./apiFestivos/build.gradle ]; then
+        if [ -f pom.xml ] || [ -f build.gradle ]; then
           echo "Detected backend (Java). Building..."
           cd apiFestivos || exit 1
           mvn -B -DskipTests package || true
