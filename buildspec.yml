@@ -4,7 +4,7 @@ env:
   variables:
     AWS_DEFAULT_REGION: "us-east-1"
     REPO_NAME: "apifestivos-backend"
-    CONTAINER_NAME: "apifestivos-backend"
+    CONTAINER_NAME: "ProyectoFestivos-backend-container"
 phases:  
   install:
     runtime-versions:
